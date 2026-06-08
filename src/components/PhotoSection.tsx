@@ -21,7 +21,7 @@ export default function PhotoSection() {
       >
         <div className="photo-frame reveal">
           <img
-            src="/foto-original-joias.png"
+            src="/aniversario36.png"
             alt="Original Joias — 36 anos celebrando elegância e tradição"
             loading="lazy"
             width={800}
