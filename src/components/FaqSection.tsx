@@ -1,25 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const FAQS = [
   {
     q: 'Como funciona o sorteio dos prêmios?',
-    a: 'Cada compra realizada de 08 a 12 de junho garante a participação no sorteio. O prêmio depende da faixa de compra: Balão Preto (R$500–R$1.499) ou Balão Dourado (acima de R$1.500). Os ganhadores são anunciados no grupo VIP do WhatsApp.',
+    a: 'Cada compra realizada de 08 a 12 de junho garante a participação no sorteio...',
   },
   {
     q: 'Preciso comprar alguma coisa para participar?',
-    a: 'Entrar no grupo VIP é gratuito! Para concorrer aos prêmios, basta realizar uma compra mínima de R$500 no período do evento (08 a 12 de junho).',
+    a: 'Entrar no grupo VIP é gratuito!...',
   },
   {
     q: 'Quanto tempo tenho para participar?',
-    a: 'O evento acontece exclusivamente de 08 a 12 de junho de 2025. Após essa data, as participações são encerradas. Não perca o prazo!',
+    a: 'O evento acontece exclusivamente de 08 a 12 de junho...',
   },
   {
     q: 'Como recebo meu prêmio caso seja sorteada?',
-    a: 'Os prêmios físicos são enviados para todo o Brasil. Descontos e créditos são aplicados diretamente na sua conta para uso em compras futuras. Todos os detalhes serão comunicados pelo grupo VIP do WhatsApp.',
+    a: 'Os prêmios físicos são enviados para todo o Brasil...',
   },
   {
     q: 'Posso participar se moro fora do Brasil?',
-    a: 'Sim! A Original Joias atende clientes em todo o Brasil e no exterior. Envios internacionais também participam do sorteio normalmente.',
+    a: 'Sim! A Original Joias atende clientes...',
   },
 ]
 
@@ -28,8 +28,27 @@ export default function FaqSection() {
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i)
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('.reveal')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="faq" style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}>
+    <section className="faq" style={{ padding: '100px 24px' }}>
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
         <span className="section-label reveal">Dúvidas Frequentes</span>
 
@@ -38,28 +57,19 @@ export default function FaqSection() {
           <span className="gold">respondidas</span>
         </h2>
 
-        <div
-          style={{
-            marginTop: 56,
-            textAlign: 'left',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12,
-          }}
-        >
+        <div style={{ marginTop: 56 }}>
           {FAQS.map((faq, i) => (
             <div
               key={i}
-              className={`faq-item reveal${openIndex === i ? ' open' : ''}`}
+              className={`faq-item reveal ${openIndex === i ? 'open' : ''}`}
             >
               <button
                 className="faq-q"
                 onClick={() => toggle(i)}
-                aria-expanded={openIndex === i}
               >
                 {faq.q}
-                <span className="faq-icon">+</span>
               </button>
+
               <div className="faq-a">{faq.a}</div>
             </div>
           ))}
