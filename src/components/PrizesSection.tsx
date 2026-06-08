@@ -184,7 +184,7 @@ export default function PrizesSection() {
 
         <div style={{ marginTop: 56 }} className="reveal">
           <a
-            href={WA_URL}
+            href={WA_URL} 
             target="_blank"
             rel="noopener noreferrer"
             style={{

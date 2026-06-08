@@ -12,4 +12,4 @@ export default function StickyMobileCta() {
       🎈 Entrar no Grupo VIP
     </a>
   )
-}
+} 
