@@ -1,7 +1,7 @@
 import { useCountdown } from '@/hooks/useCountdown'
 
 const WA_URL = import.meta.env.VITE_WHATSAPP_URL as string
-const EVENT_END = import.meta.env.VITE_EVENT_END_DATE ?? '2025-06-12T23:59:59'
+const EVENT_END = import.meta.env.VITE_EVENT_END_DATE ?? '2026-06-12T23:59:59'
 
 interface BlockProps {
   value: string
