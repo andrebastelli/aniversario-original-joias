@@ -17,8 +17,8 @@ export default function HeroSection() {
 
       <p className="hero-sub">Original Joias</p>
 
-      <div className="hero-brand">36</div>
-      <div className="hero-brand">anos</div>
+      <div className="hero-years">36</div>
+      <div className="hero-script">anos</div>
       <div className="hero-brand">de Original Joias</div>
 
       <div
