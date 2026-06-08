@@ -54,8 +54,8 @@ export default function UrgencySection() {
         <span className="section-label reveal">Tempo Limitado</span>
 
         <h2 className="section-title reveal" style={{ color: 'var(--white)' }}>
-          O relógio está<br />
-          <span className="gold">correndo...</span>
+          O tempo está acabando.<br></br>Últimas vagas!<br />
+          <span className="gold">Corra!!!</span>
         </h2>
 
         <div
@@ -98,7 +98,7 @@ export default function UrgencySection() {
           rel="noopener noreferrer"
           className="cta-primary reveal"
         >
-          🏆 Entrar Agora — É Grátis!
+          🏆 Entre Agora — É Grátis!
         </a>
       </div>
     </section>
