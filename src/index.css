@@ -57,7 +57,8 @@ body {
   text-align: center;
   padding: 60px 24px 80px;
   background: radial-gradient(ellipse at 50% 0%, #2a1f0a 0%, #0A0A0A 60%);
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 20px;
   z-index: 1;
 }
 
@@ -112,7 +113,8 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(80px, 20vw, 180px);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.15;
+  padding: 0 12px;
   margin: 0 0 8px;
   animation: fadeUp 1s ease 0.3s both;
   background: var(--gradient-gold);
