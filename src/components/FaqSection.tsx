@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const FAQS = [
   {
@@ -25,11 +25,33 @@ const FAQS = [
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i)
 
+  // Observer local para garantir que os reveals desta seção sempre disparem
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible')
+            observer.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+    )
+    sectionRef.current?.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="faq" style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}>
+    <section
+      ref={sectionRef}
+      className="faq"
+      style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}
+    >
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
         <span className="section-label reveal">Dúvidas Frequentes</span>
 
@@ -38,7 +60,10 @@ export default function FaqSection() {
           <span className="gold">respondidas</span>
         </h2>
 
+        {/* O wrapper da lista tem reveal — os itens individuais NÃO têm reveal
+            para evitar que fiquem invisíveis caso o observer não os detecte */}
         <div
+          className="reveal"
           style={{
             marginTop: 56,
             textAlign: 'left',
@@ -50,7 +75,7 @@ export default function FaqSection() {
           {FAQS.map((faq, i) => (
             <div
               key={i}
-              className={`faq-item reveal${openIndex === i ? ' open' : ''}`}
+              className={`faq-item${openIndex === i ? ' open' : ''}`}
             >
               <button
                 className="faq-q"
