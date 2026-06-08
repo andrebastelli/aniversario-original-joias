@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 
 const FAQS = [
   {
@@ -25,45 +25,23 @@ const FAQS = [
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const sectionRef = useRef<HTMLElement>(null)
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i)
 
-  // Observer local para garantir que os reveals desta seção sempre disparem
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible')
-            observer.unobserve(e.target)
-          }
-        })
-      },
-      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
-    )
-    sectionRef.current?.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section
-      ref={sectionRef}
       className="faq"
       style={{ padding: '100px 24px', position: 'relative', zIndex: 1 }}
     >
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-        <span className="section-label reveal">Dúvidas Frequentes</span>
+        <span className="section-label">Dúvidas Frequentes</span>
 
-        <h2 className="section-title reveal" style={{ color: 'var(--white)' }}>
+        <h2 className="section-title" style={{ color: 'var(--white)' }}>
           Suas perguntas<br />
           <span className="gold">respondidas</span>
         </h2>
 
-        {/* O wrapper da lista tem reveal — os itens individuais NÃO têm reveal
-            para evitar que fiquem invisíveis caso o observer não os detecte */}
         <div
-          className="reveal"
           style={{
             marginTop: 56,
             textAlign: 'left',
