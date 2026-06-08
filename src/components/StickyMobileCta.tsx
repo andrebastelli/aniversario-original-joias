@@ -9,7 +9,7 @@ export default function StickyMobileCta() {
       className="sticky-cta"
       aria-label="Entrar no Grupo VIP do WhatsApp"
     >
-      🎈 Quero Participar — Entrar no Grupo VIP
+      🎈 Entrar no Grupo Exclusivo
     </a>
   )
 }

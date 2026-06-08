@@ -98,7 +98,7 @@ export default function UrgencySection() {
           rel="noopener noreferrer"
           className="cta-primary reveal"
         >
-          🏆 Entre Agora — É Grátis!
+          🏆 Entrar no Grupo Exclusivo
         </a>
       </div>
     </section>
